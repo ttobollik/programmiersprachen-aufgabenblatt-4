@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Theresa/Desktop/programmiersprachen-aufgabenblatt-4/source/aufgabe1.cpp
+cassert
+-
+iostream
+-
+
