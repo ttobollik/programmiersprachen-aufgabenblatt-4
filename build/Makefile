@@ -137,6 +137,19 @@ glfw/fast:
 .PHONY : glfw/fast
 
 #=============================================================================
+# Target rules for targets named TestList
+
+# Build rule for target.
+TestList: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TestList
+.PHONY : TestList
+
+# fast build rule for target.
+TestList/fast:
+	$(MAKE) -f source/CMakeFiles/TestList.dir/build.make source/CMakeFiles/TestList.dir/build
+.PHONY : TestList/fast
+
+#=============================================================================
 # Target rules for targets named aufgabe1
 
 # Build rule for target.
@@ -186,6 +199,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... nanovg"
 	@echo "... glfw"
+	@echo "... TestList"
 	@echo "... aufgabe1"
 	@echo "... external/nanovg/src/nanovg.o"
 	@echo "... external/nanovg/src/nanovg.i"
