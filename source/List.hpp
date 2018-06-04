@@ -1,6 +1,7 @@
 #ifndef BUW_LIST_HPP
 #define BUW_LIST_HPP
 #include <cstddef>
+#include <iostream>
 // List.hpp
 
 template <typename T> class List;
@@ -43,9 +44,9 @@ template <typename T> class List
         using iterator = ListIterator <T>;
         using const_iterator = ListConstIterator <T>;
 
-        // Default Constructor
+        // Aufgabe 3.2
         List() :
-            size_{0}, first{nullptr}, last_{nullptr} {}
+            size_{0}, first_{nullptr}, last_{nullptr} {}
         
         bool empty() const {
             return size_ == 0;
@@ -55,22 +56,75 @@ template <typename T> class List
             return size_;
         }
 
+        // Aufgabe 3.3
         void push_front(T const& wert) {
-            ListNode <T>* new_node;
-            new_node.value = wert;
+            ListNode<T>* node = new ListNode<T>{wert, nullptr, nullptr}; //wenn wir keinen Konstruktor initialisieren, dann gibt es meist einen        
             if (empty() == true) {
-                first = last_ = wert;
+                first_ = node;
+                last_ = node;
             } else {
-                first.prev = new_node;
-                new_node.next = first;
-                first = new_node;
-                first.prev = nullptr;
+                node->next = first_;
+                first_->prev = node;
+                first_ = node;
+            }
+            ++size_;
+        }
+
+        void push_back(T const& wert) {
+            ListNode<T>* node = new ListNode<T>{wert, nullptr, nullptr};
+            if (empty() == true) {
+                first_ = node;
+                last_ = node;
+            } else {
+                node->prev = last_;
+                last_->next = node;
+                last_ = node;
+            }
+            ++size_;
+        }
+
+        void pop_front() {
+            if (empty() == true) {
+                std::cout<< "The list is empty, no element to delete \n";
+            } else if ( size() == 1) {
+                first_ = nullptr;
+                last_ = first_;
+                --size_;
+            } else {
+                first_ = first_->next;
+                first_->prev = nullptr;
+                --size_; //DELETE einfuegen, Adrian fragen
             }
         }
 
+
+        void pop_back() {
+            if (empty() == true) {
+                std::cout<< "The list is empty, no element to delete \n";
+            } else if ( size() == 1) {
+                first_ = nullptr;
+                last_ = first_;
+                --size_;
+            } else {
+                last_ = last_->prev;
+                last_->next = nullptr;
+                --size_; //DELETE einfuegen, Adrian fragen
+            }
+        }
+
+        T front() const{
+            return first_->value;
+        }
+
+        T back() const{
+            return last_->value;
+        }
+
+        //Aufgabe 3.4
+
         private:
         std::size_t size_;
-        ListNode <T>* first;
+        ListNode <T>* first_;
         ListNode <T>* last_;
         };
 

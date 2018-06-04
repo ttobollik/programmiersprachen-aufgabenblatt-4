@@ -23,12 +23,11 @@ int main() {
     std::cout << "erfolgreich!" << std::endl;
   }
 
-  // gebe Speicher dynamischer Variable referenziert von p_1 frei
-  delete p_1;  //loescht den Inhalt, da es anschließend umgesetzt wird!!!
+  
 
   /* kopiere referenziertes Objekt von p_2 in p_1 mittels
      Dereferenzierung beider Pointer-Variablen*/
-  p_1 = p_2;
+  *p_1 = *p_2;
 
   /* p_1 und p_2 sind nach wie vor verschiedene Objekte;
      p_1 zeigt auf eine Integer-Variable mit dem Wert 5,
@@ -42,9 +41,10 @@ int main() {
   }
 
   // gebe Speicher dynamischer Variable referenziert von p_2 frei
-  delete p_2; //loescht den Inhalt, nicht den Pointer! 
-  p_2 = nullptr;
+  delete p_2; // kann der Variable nicht die Adresse nehmen - zerstoert Objekt und gibt Adresse frei
+  p_2 = nullptr; //null kann niemals eine valide Adresse sein. So weiß ich, dass es geloescht wurde
 
+  delete p_1;   // sieht man nicht zwingend im Debugger, da es nur geflagt wird, dass es ueberschrieben werden kann
   p_1 = nullptr;
   
   std::cout << "Das Programm lief bis zum Ende durch." << std::endl;
