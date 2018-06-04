@@ -3,16 +3,13 @@
 #include <catch.hpp>
 #include <iostream>
 
+// 4.2
+TEST_CASE("testing list methods", "[list]") {
+    List<int> l1;
+    REQUIRE(l1.size() == 0);
+    REQUIRE(l1.empty() == true);
+}
 
-// Default Constructor
-List();
-// http://en.cppreference.com/w/cpp/container/list/empty
-
-bool empty() const;
-// http://en.cppreference.com/w/cpp/container/list/size
-
-std::size_t size() const;
-
-int main() {
-    return 0;
+int main(int argc, char *argv[]) {
+    return Catch::Session().run(argc, argv);
 }
