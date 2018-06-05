@@ -55,6 +55,17 @@ TEST_CASE("delete element-back2", "[modifiers]") {
     REQUIRE(list.back() == 25);
 }
 
+//Aufgabe 4.4
+TEST_CASE("clear list", "[modifiers]") {
+    List<int> list;
+    list.push_front(42);
+    list.push_front(25);
+    list.push_front(20);
+    list.clear();
+    REQUIRE(list.empty() == true);
+}
+
+
 int main(int argc, char *argv[]) {
     return Catch::Session().run(argc, argv);
 }

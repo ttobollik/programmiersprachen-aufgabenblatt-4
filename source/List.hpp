@@ -12,14 +12,54 @@ template <typename T> struct ListNode
         ListNode* next = nullptr;
     };
 
-template <typename T> class ListIterator
-    {
-        public:
-        // Standartkonstruktor
-        // copy-Konstruktor
-        private:
+template <typename T>
+class ListIterator {
+    public:
+        using Self = ListIterator <T>;
+        using value_type =T;
+        using pointer = T*;
+        using reference = T&;
+        using difference_type = ptrdiff_t;
+        using iterator_category = std::bidirectional_iterator_tag;
+
+        ListIterator() : node{nullptr} {} // FRAGE: initialisierlist?
+        ListIterator(ListNode<T>* n) : node{n} {}  // FRAGE: initialiserlist?
+        reference operator*() const {
+            return &this; //FRAGE: &node?
+        } 
+        pointer operator->() const {
+            return *this; //FRAGE. *node
+        } 
+        Self& operator++() {
+            node = node->next;
+            return *this; //FRAGE: Referenz? Pointer?
+        } 
+
+        Self operator++(int) {
+            Self temp = *this;
+            ++(*this);
+            return temp;
+        } // not implemented yet
+        bool operator==(Self const& x) const {
+            return *this == x; //FRAGEN ob richtig
+        }
+        bool operator!=(Self const& x) const {
+            return *this !=x ; //FRAGEN ob richtig
+        }
+
+        Self next () const {
+            if (node)
+                return ListIterator(node->next);
+            else
+                return ListIterator(nullptr);
+    }
+
+    private:
+    // The Node the iterator is pointing to 
         ListNode <T>* node;
-    };
+    
+};
+
 
 template <typename T>
 class ListConstIterator
@@ -44,9 +84,12 @@ template <typename T> class List
         using iterator = ListIterator <T>;
         using const_iterator = ListConstIterator <T>;
 
-        // Aufgabe 3.2
+        // Aufgabe 4.2
         List() :
             size_{0}, first_{nullptr}, last_{nullptr} {}
+        ~List() {
+            clear();
+        }
         
         bool empty() const {
             return size_ == 0;
@@ -56,7 +99,7 @@ template <typename T> class List
             return size_;
         }
 
-        // Aufgabe 3.3
+        // Aufgabe 4.3
         void push_front(T const& wert) {
             ListNode<T>* node = new ListNode<T>{wert, nullptr, nullptr}; //wenn wir keinen Konstruktor initialisieren, dann gibt es meist einen        
             if (empty() == true) {
@@ -121,6 +164,16 @@ template <typename T> class List
         }
 
         //Aufgabe 3.4
+
+        void clear() {
+            if(empty()==true) {
+                std::cout<< "The list is already empty \n";
+            } else {
+                while (first_ != nullptr && last_ != nullptr) {
+                    pop_back();
+                }
+            }
+        } //FRAGE: Destruktor mit clear???
 
         private:
         std::size_t size_;
