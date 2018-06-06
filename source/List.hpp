@@ -41,10 +41,10 @@ class ListIterator {
             return temp;
         } // not implemented yet
         bool operator==(Self const& x) const {
-            return node == x.get_node(); //Wir vergleichen, ob die Node, auf den beide zeigen, die gleiche Adresse hat
+            return node == x.get_node_pointer(); //Wir vergleichen, ob die Node, auf den beide zeigen, die gleiche Adresse hat
         }
         bool operator!=(Self const& x) const {
-            return node != x.get_node() ; //
+            return node != x.get_node_pointer() ; //
         }
 
         Self next () const {
@@ -54,7 +54,7 @@ class ListIterator {
                 return ListIterator(nullptr);
     }
 
-        ListNode<T>* get_node() const{
+        ListNode<T>* get_node_pointer() const{
             return node;
         }
 
@@ -203,7 +203,16 @@ template <typename T> class List
             return ListIterator<T>();
         }
 
-        
+        //Aufgabe 4.9 
+
+        void insert(ListIterator<T> pos, T const& object) {
+
+            ListNode<T>* new_node = new ListNode(object, pos.get_node_pointer()->prev, pos.get_node_pointer());
+            pos.get_node()->prev->next = new_node;
+            pos.get_node()->prev = new_node;
+            ++size;
+            
+        }
 
         private:
         std::size_t size_;
@@ -211,6 +220,7 @@ template <typename T> class List
         ListNode <T>* last_;
         };
 
+//Aufgabe 4.7
 template <typename T>
 bool operator==(List<T> const& xs, List<T> const& ys) {
     //bool result = true;
