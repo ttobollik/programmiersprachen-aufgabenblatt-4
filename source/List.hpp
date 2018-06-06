@@ -195,6 +195,33 @@ template <typename T> class List
         ListNode <T>* last_;
         };
 
+template <typename T>
+bool operator==(List<T> const& xs, List<T> const& ys) {
+    //bool result = true;
+    ListIterator<T> start_X = xs.begin();
+    ListIterator<T> start_Y = ys.begin();
+    if (xs.size() != ys.size()) {
+        return false;
+    } else {
+        for (int i = 0; i < xs.size(); ++i) {
+            if (*start_X != *start_Y) {
+                return false;
+            } else {
+                ++start_X;
+                ++start_Y;
+            }    
+        }
+        return true;
+    }
+    
+}
+
+template <typename T>
+bool operator!=(List<T> const& xs, List<T> const& ys) {
+ return !(xs == ys);
+}
+
+
 #endif // #define BUW_LIST_HPP
 
 
