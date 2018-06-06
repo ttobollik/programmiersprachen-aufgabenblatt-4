@@ -22,10 +22,10 @@ class ListIterator {
         using difference_type = ptrdiff_t;
         using iterator_category = std::bidirectional_iterator_tag;
 
-        ListIterator() : node{nullptr} {} // FRAGE: initialisierlist?
-        ListIterator(ListNode<T>* n) : node{n} {}  // FRAGE: initialiserlist?
+        ListIterator() : node{nullptr} {} 
+        ListIterator(ListNode<T>* n) : node{n} {}  
         reference operator*() const {
-            return &this; //FRAGE: &node?
+            return node->value; //
         } 
         pointer operator->() const {
             return *this; //FRAGE. *node
@@ -41,10 +41,10 @@ class ListIterator {
             return temp;
         } // not implemented yet
         bool operator==(Self const& x) const {
-            return *this == x; //FRAGEN ob richtig
+            return node == x.get_node(); //Wir vergleichen, ob die Node, auf den beide zeigen, die gleiche Adresse hat
         }
         bool operator!=(Self const& x) const {
-            return *this !=x ; //FRAGEN ob richtig
+            return node != x.get_node() ; //
         }
 
         Self next () const {
@@ -53,6 +53,10 @@ class ListIterator {
             else
                 return ListIterator(nullptr);
     }
+
+        ListNode<T>* get_node() const{
+            return node;
+        }
 
     private:
     // The Node the iterator is pointing to 
@@ -174,6 +178,16 @@ template <typename T> class List
                 }
             }
         } //FRAGE: Destruktor mit clear???
+
+        //Aufgabe 4.6
+        
+        ListIterator<T> begin() {
+           return ListIterator<T>(first_);
+        }
+
+        ListIterator<T> end() {
+            return ListIterator<T>();
+        }
 
         private:
         std::size_t size_;
