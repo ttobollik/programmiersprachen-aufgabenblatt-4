@@ -103,6 +103,14 @@ template <typename T> class List
             return size_;
         }
 
+        //Aufgabe 4.8
+        List(List const& oldList) : 
+            size_{0}, first_{nullptr}, last_{nullptr} {
+                for(auto i = oldList.begin(); i != oldList.end(); ++i) {
+                    push_back(*i); // weiß, dass es um diese Liste geht!
+                }
+            } 
+
         // Aufgabe 4.3
         void push_front(T const& wert) {
             ListNode<T>* node = new ListNode<T>{wert, nullptr, nullptr}; //wenn wir keinen Konstruktor initialisieren, dann gibt es meist einen        
@@ -134,13 +142,16 @@ template <typename T> class List
             if (empty() == true) {
                 std::cout<< "The list is empty, no element to delete \n";
             } else if ( size() == 1) {
+                delete first_;
                 first_ = nullptr;
                 last_ = first_;
                 --size_;
             } else {
-                first_ = first_->next;
+                auto temp = first_->next;
+                delete first_;
+                first_ = temp;
                 first_->prev = nullptr;
-                --size_; //DELETE einfuegen, Adrian fragen
+                --size_;
             }
         }
 
@@ -149,13 +160,16 @@ template <typename T> class List
             if (empty() == true) {
                 std::cout<< "The list is empty, no element to delete \n";
             } else if ( size() == 1) {
+                delete first_;
                 first_ = nullptr;
                 last_ = first_;
                 --size_;
             } else {
-                last_ = last_->prev;
-                last_->next = nullptr;
-                --size_; //DELETE einfuegen, Adrian fragen
+                auto temp = last_->prev;
+                delete last_;
+                temp->next = nullptr;
+                last_ = temp;
+                --size_; 
             }
         }
 
@@ -167,7 +181,7 @@ template <typename T> class List
             return last_->value;
         }
 
-        //Aufgabe 3.4
+        //Aufgabe 4.4
 
         void clear() {
             if(empty()==true) {
@@ -181,13 +195,15 @@ template <typename T> class List
 
         //Aufgabe 4.6
         
-        ListIterator<T> begin() {
-           return ListIterator<T>(first_);
+        ListIterator<T> begin() const { //muss const sein, da ich es const in anderen Funktionen zurückgebe
+           return ListIterator<T>(first_); //nicht const zurückgeben, da ich es ja ändern möchte!
         }
 
-        ListIterator<T> end() {
+        ListIterator<T> end() const{
             return ListIterator<T>();
         }
+
+        
 
         private:
         std::size_t size_;
