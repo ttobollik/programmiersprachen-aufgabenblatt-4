@@ -91,6 +91,20 @@ TEST_CASE("copy constructor", "[constructor]") {
     REQUIRE(list == list2);
 }
 
+//Aufgabe 4.9 Test
+// TEST_CASE("inster", "[insert]") {
+//     List<int> list;
+//     ListIterator<int> it;
+//     list.push_front(1);
+//     list.push_front(2);
+//     list.push_front(3);
+//     list.push_front(4);
+//     auto i = list.begin();
+//     list.insert(i, 5);
+//     REQUIRE(list.front() == 5);
+// }
+
+
 
 int main(int argc, char *argv[]) {
     return Catch::Session().run(argc, argv);

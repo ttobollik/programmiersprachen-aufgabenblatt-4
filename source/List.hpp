@@ -207,14 +207,27 @@ template <typename T> class List
 
         void insert(ListIterator<T> pos, T const& object) {
         if (pos.get_node_pointer()->prev != nullptr) {
-            ListNode<T>* new_node = new ListNode<T>(object, pos.get_node_pointer()->prev, pos.get_node_pointer());
-            pos.get_node()->prev->next = new_node;
-            pos.get_node()->prev = new_node;
+            ListNode<T>* new_node = new ListNode<T>{object, pos.get_node_pointer()->prev, pos.get_node_pointer()};
+            pos.get_node_pointer()->prev->next = new_node;
+            pos.get_node_pointer()->prev = new_node;
         } else {
             push_front(object);
         }
          ++size_;
         }
+
+        // //Aufgabe 4.10
+        // void reverse() {
+        //     ListNode<T>* temp = new ListNode<T>();
+        //     //loop untill reach this->next == nullptr. - durchiterieren
+        //     *this->next->next = *this;
+        //     *this->next = *this->prev;
+
+        //     temp_ = first_;
+        //     first_ = last_;
+        //     last_ = temp_;
+
+        // }
 
         private:
         std::size_t size_;
@@ -249,6 +262,12 @@ bool operator!=(List<T> const& xs, List<T> const& ys) {
  return !(xs == ys);
 }
 
+// Template <typename T>
+// List<T> reverse(List<T>& xs) {
+//     List<T> new_list();
+//     new_list.reverse();
+//     return new-list;
+// }
 
 #endif // #define BUW_LIST_HPP
 
