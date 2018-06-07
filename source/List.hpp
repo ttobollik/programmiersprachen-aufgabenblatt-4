@@ -111,6 +111,14 @@ template <typename T> class List
                 }
             } 
 
+        //Aufgabe 4.12
+        List<T> operator=(List<T> xs) {
+            clear();
+            for(auto i = xs.begin(); i != xs.end(); ++i) {
+                    push_back(*i);
+            }
+        }
+
         // Aufgabe 4.3
         void push_front(T const& wert) {
             ListNode<T>* node = new ListNode<T>{wert, nullptr, nullptr}; //wenn wir keinen Konstruktor initialisieren, dann gibt es meist einen        
@@ -269,7 +277,7 @@ bool operator!=(List<T> const& xs, List<T> const& ys) {
 
 template <typename T>
 List<T> reverse(List<T>const& xs) {
-    List<T> new_list = xs;
+    List<T> new_list(xs);
     new_list.reverse();
     return new_list;
 }

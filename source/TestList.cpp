@@ -2,6 +2,7 @@
 #include "List.hpp"
 #include <catch.hpp>
 #include <iostream>
+#include <vector>
 
 // 4.2
 TEST_CASE("testing list methods", "[list]") {
@@ -118,6 +119,22 @@ TEST_CASE("reverse", "[list_reverse]") {
     REQUIRE(list2.front() == 4);
 
 }
+
+//Aufgabe 4.11 
+
+TEST_CASE("std_copy, list", "[copy]") {
+    List<int> list;
+    list.push_front(1);
+    list.push_front(2);
+    list.push_front(3);
+    list.push_front(4);
+    std::vector<int> vector(list.size());
+    std::copy(list.begin(), list.end(), vector.begin());
+    REQUIRE(4 == *vector.begin());
+}
+
+
+
 
 
 
