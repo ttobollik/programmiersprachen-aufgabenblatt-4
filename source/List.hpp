@@ -122,6 +122,16 @@ template <typename T> class List
                 rhs.last_ = nullptr;
             }
 
+        //Aufgabe 4.14
+        List(std::initializer_list<T> const& init) : 
+        size_{0},
+        first_{nullptr},
+        last_{nullptr}
+        {
+            for(auto i = init.begin(); i != init.end(); ++i) {
+                    push_back(*i);
+            }
+        }
 
         //Aufgabe 4.12
         List<T>& operator=(List<T> xs) {

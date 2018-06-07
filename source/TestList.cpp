@@ -161,11 +161,17 @@ TEST_CASE("move constructor", "[constructor]") {
     REQUIRE(4 == list2.size());
 }
 
+//Aufgabe 4.14 
+TEST_CASE("init-constructor", "[constructor]") {
+    List<int> int_list{9, 5, 38, 100};
+    REQUIRE(9 == int_list.front());
+}
 
 
 
 
 
 int main(int argc, char *argv[]) {
+    List<int> int_list{9, 5, 38, 100};
     return Catch::Session().run(argc, argv);
 }
