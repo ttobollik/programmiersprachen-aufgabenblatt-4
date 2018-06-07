@@ -206,12 +206,14 @@ template <typename T> class List
         //Aufgabe 4.9 
 
         void insert(ListIterator<T> pos, T const& object) {
-
-            ListNode<T>* new_node = new ListNode(object, pos.get_node_pointer()->prev, pos.get_node_pointer());
+        if (pos.get_node_pointer()->prev != nullptr) {
+            ListNode<T>* new_node = new ListNode<T>(object, pos.get_node_pointer()->prev, pos.get_node_pointer());
             pos.get_node()->prev->next = new_node;
             pos.get_node()->prev = new_node;
-            ++size;
-            
+        } else {
+            push_front(object);
+        }
+         ++size_;
         }
 
         private:
