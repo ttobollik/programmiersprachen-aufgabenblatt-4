@@ -104,6 +104,21 @@ TEST_CASE("copy constructor", "[constructor]") {
 //     REQUIRE(list.front() == 5);
 // }
 
+//Aufgabe 4.10 Test
+
+TEST_CASE("reverse", "[list_reverse]") {
+    List<int> list;
+    list.push_front(1);
+    list.push_front(2);
+    list.push_front(3);
+    list.push_front(4);
+    list.reverse();
+    REQUIRE(list.front() == 1);
+    List<int> list2 = reverse(list);
+    REQUIRE(list2.front() == 4);
+
+}
+
 
 
 int main(int argc, char *argv[]) {

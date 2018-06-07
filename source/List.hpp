@@ -216,18 +216,23 @@ template <typename T> class List
          ++size_;
         }
 
-        // //Aufgabe 4.10
-        // void reverse() {
-        //     ListNode<T>* temp = new ListNode<T>();
-        //     //loop untill reach this->next == nullptr. - durchiterieren
-        //     *this->next->next = *this;
-        //     *this->next = *this->prev;
-
-        //     temp_ = first_;
-        //     first_ = last_;
-        //     last_ = temp_;
-
-        // }
+        //Aufgabe 4.10
+        void reverse() {
+            ListNode<T>* current = new ListNode<T>;
+            current = first_;
+            ListNode<T>* temp = new ListNode<T>();
+            while(current != nullptr) {
+                temp = current->next;
+                current->next = current->prev;
+                current->prev = temp; //denn temp == current->next
+                    if (temp == nullptr) {
+                        last_ = first_;
+                        first_ = current;
+                    } 
+                current = temp; //denn temp == current->next
+            }
+           
+        }
 
         private:
         std::size_t size_;
@@ -262,12 +267,12 @@ bool operator!=(List<T> const& xs, List<T> const& ys) {
  return !(xs == ys);
 }
 
-// Template <typename T>
-// List<T> reverse(List<T>& xs) {
-//     List<T> new_list();
-//     new_list.reverse();
-//     return new-list;
-// }
+template <typename T>
+List<T> reverse(List<T>const& xs) {
+    List<T> new_list = xs;
+    new_list.reverse();
+    return new_list;
+}
 
 #endif // #define BUW_LIST_HPP
 
