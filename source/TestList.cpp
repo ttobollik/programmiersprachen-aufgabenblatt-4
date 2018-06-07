@@ -133,6 +133,22 @@ TEST_CASE("std_copy, list", "[copy]") {
     REQUIRE(4 == *vector.begin());
 }
 
+//Aufgabe 4.12
+
+TEST_CASE("assign operator", "[assign]") {
+    List<int> list;
+    list.push_front(1);
+    list.push_front(2);
+    list.push_front(3);
+    list.push_front(4);
+    List<int> list2;
+    list2.push_front(10);
+    list2.push_front(8);
+    list = list2;    
+    REQUIRE(8 == *list.begin());
+}
+
+
 
 
 

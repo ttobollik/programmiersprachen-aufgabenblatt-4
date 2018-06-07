@@ -112,11 +112,12 @@ template <typename T> class List
             } 
 
         //Aufgabe 4.12
-        List<T> operator=(List<T> xs) {
+        List<T>& operator=(List<T> xs) {
             clear();
             for(auto i = xs.begin(); i != xs.end(); ++i) {
                     push_back(*i);
             }
+            return *this;
         }
 
         // Aufgabe 4.3
