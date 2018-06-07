@@ -82,6 +82,17 @@ TEST_CASE("provide access to the first element with begin", "[iterators]") {
 }
 
 
+TEST_CASE("first element", "[iterators]") {
+    List<int> list;
+    list.push_front(42);
+    list.push_front(22);
+    list.push_front(1);
+    REQUIRE(1 == *list.begin());
+}
+
+//Aufgabe 4.8
+
+
 TEST_CASE("copy constructor", "[constructor]") {
     List<int> list;
     list.push_front(1);
@@ -168,10 +179,17 @@ TEST_CASE("init-constructor", "[constructor]") {
 }
 
 
-
+TEST_CASE("concatination", "[concat]") {
+    List<int> list{9, 5, 38, 100};
+    List<int> list2{1, 2, 3, 4};
+    List<int> int_list3 = list + list2;
+    REQUIRE(9 == int_list3.front());
+}
 
 
 int main(int argc, char *argv[]) {
     List<int> int_list{9, 5, 38, 100};
+    auto l = List<int>{1, 2, 3, 4, 5} + List<int>{6, 7, 8, 9};
+
     return Catch::Session().run(argc, argv);
 }

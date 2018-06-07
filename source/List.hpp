@@ -120,6 +120,7 @@ template <typename T> class List
                 rhs.size_= 0;
                 rhs.first_ = nullptr;
                 rhs.last_ = nullptr;
+                std::cout<<"Aufruf\n";
             }
 
         //Aufgabe 4.14
@@ -141,6 +142,7 @@ template <typename T> class List
             }
             return *this;
         }
+        
 
         // Aufgabe 4.3
         void push_front(T const& wert) {
@@ -304,6 +306,17 @@ List<T> reverse(List<T>const& xs) {
     List<T> new_list(xs);
     new_list.reverse();
     return new_list;
+}
+
+//Aufgabe 4.14
+template <typename T>
+List<T> operator+(List<T> const& xs, List<T> const& ys) {
+    List<T> concat = std::move(xs);
+    
+    for(auto i: ys) {
+        concat.push_back(i);
+    }
+    return concat;
 }
 
 #endif // #define BUW_LIST_HPP
