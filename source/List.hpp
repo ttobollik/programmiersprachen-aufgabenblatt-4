@@ -2,6 +2,7 @@
 #define BUW_LIST_HPP
 #include <cstddef>
 #include <iostream>
+#include <initializer_list>
 // List.hpp
 
 template <typename T> class List;
@@ -110,6 +111,17 @@ template <typename T> class List
                     push_back(*i); // weiß, dass es um diese Liste geht!
                 }
             } 
+
+        //Aufgabe 4.13
+        List(List<T>&& rhs) :
+            size_(rhs.size()), //warum runde Klammern?
+            first_(rhs.first_),
+            last_(rhs.last_) {
+                rhs.size_= 0;
+                rhs.first_ = nullptr;
+                rhs.last_ = nullptr;
+            }
+
 
         //Aufgabe 4.12
         List<T>& operator=(List<T> xs) {
@@ -242,6 +254,7 @@ template <typename T> class List
             }
            
         }
+
 
         private:
         std::size_t size_;
