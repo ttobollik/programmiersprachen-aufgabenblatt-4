@@ -104,7 +104,7 @@ TEST_CASE("copy constructor", "[constructor]") {
 }
 
 //Aufgabe 4.9 Test
-// TEST_CASE("inster", "[insert]") {
+// TEST_CASE("insert", "[insert]") {
 //     List<int> list;
 //     ListIterator<int> it;
 //     list.push_front(1);

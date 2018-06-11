@@ -150,6 +150,19 @@ TestList/fast:
 .PHONY : TestList/fast
 
 #=============================================================================
+# Target rules for targets named Karp_Rabin
+
+# Build rule for target.
+Karp_Rabin: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Karp_Rabin
+.PHONY : Karp_Rabin
+
+# fast build rule for target.
+Karp_Rabin/fast:
+	$(MAKE) -f source/CMakeFiles/Karp_Rabin.dir/build.make source/CMakeFiles/Karp_Rabin.dir/build
+.PHONY : Karp_Rabin/fast
+
+#=============================================================================
 # Target rules for targets named aufgabe1
 
 # Build rule for target.
@@ -200,6 +213,7 @@ help:
 	@echo "... nanovg"
 	@echo "... glfw"
 	@echo "... TestList"
+	@echo "... Karp_Rabin"
 	@echo "... aufgabe1"
 	@echo "... external/nanovg/src/nanovg.o"
 	@echo "... external/nanovg/src/nanovg.i"

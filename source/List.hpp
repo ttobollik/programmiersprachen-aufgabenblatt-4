@@ -25,6 +25,7 @@ class ListIterator {
 
         ListIterator() : node{nullptr} {} 
         ListIterator(ListNode<T>* n) : node{n} {}  
+
         reference operator*() const {
             return node->value; //
         } 
@@ -114,7 +115,7 @@ template <typename T> class List
 
         //Aufgabe 4.13
         List(List<T>&& rhs) :
-            size_(rhs.size()), //warum runde Klammern?
+            size_(rhs.size()), //
             first_(rhs.first_),
             last_(rhs.last_) {
                 rhs.size_= 0;

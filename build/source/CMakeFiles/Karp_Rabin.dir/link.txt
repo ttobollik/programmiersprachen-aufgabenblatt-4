@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -std=c++14 -Wall -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Karp_Rabin.dir/Karp_Rabin.cpp.o  -o Karp_Rabin 

@@ -8,4 +8,7 @@ add_executable(TestList
   TestList.cpp
   )
 
-
+#Build Karp_Rabin
+add_executable(Karp_Rabin
+  Karp_Rabin.cpp
+  )

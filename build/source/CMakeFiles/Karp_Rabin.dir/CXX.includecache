@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Theresa/Desktop/programmiersprachen-aufgabenblatt-4/source/Karp_Rabin.cpp
+iostream
+-
+vector
+-
+string
+-
+sstream
+-
+cmath
+-
+
